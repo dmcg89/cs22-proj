@@ -1,11 +1,11 @@
 # cs22-proj
 Blog Post: https://medium.com/@michael.mcgowan/djikstras-delivery-1502c7b92eaf <br/>
-Sample Input:<br/>
-py project.py graph_data.txt :<br/>
-Returns all maximal cliques and whether graph is eulerian cycle <br/>
+Sample Input:<br/><br/>
+py project.py graph_data.txt <br/>
+Returns all maximal cliques and boolean of whether graph is eulerian cycle <br/><br/>
 Sample Input for Dijkstra's: <br/>
 py dijkstra.py <br/>
-Returns shortest path between vertices in driver code
+Returns shortest path between vertices in driver code.<br/><br/>
 
 Implementation 1: Return all maximal cliques in a given graph. <br/>
 Implementation 2: Be able to return all vertex degrees of a given graph and determine whether graph is a Eulerian cycle. <br/>
