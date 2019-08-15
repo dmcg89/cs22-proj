@@ -8,7 +8,7 @@ A helper class for the Graph class that defines vertices and vertex neighbors.
 
 class Vertex(object):
 
-    def __init__(self, vertex):
+    def __init__(self, vertex): 
         """initialize a vertex and its neighbors
 
         neighbors: set of vertices adjacent to self,
@@ -29,6 +29,7 @@ class Vertex(object):
         else:
             self.neighbors[vertex] = weight
             # return self.neighbors
+
 
     def __str__(self):
         """output the list of neighbors of this vertex"""
@@ -104,12 +105,12 @@ class Graph:
     def get_vertices(self):
         """Return all the vertices in graph"""
         return set(self.vert_dict.values())
-
+    
     def add_degree(self, vertex):
         if isinstance(vertex, int):
             vertex = self.get_vertex(vertex)
         vertex.degree += 1
-
+    
     def is_eulerian(self):
         for vert in self.vert_dict:
             # verify that we are dealing with object, not key
@@ -135,7 +136,7 @@ class Graph:
             # Hint: the vertex f is stored in self.vertList[f].
             self.vert_dict[key1].add_neighbor(self.vert_dict[key2], cost)
             self.vert_dict[key2].add_neighbor(self.vert_dict[key1], cost)
-            
+
             # increment degrees in vertex objects
             self.add_degree(key1)
             self.add_degree(key2)
@@ -145,7 +146,7 @@ class Graph:
     #     return str(self.vert_dict.keys())
     
     def is_clique(self, start_id):
-        """ Determines if a set exists around a given start_id"""
+        """ Determines if a clique exists around a given start_id"""
         remain_verts = []
         clique = []
         # Add start id to potential clique list
@@ -198,7 +199,7 @@ class Graph:
 
 
     def search_clique(self):
-        """ Iterates through all vertices in graph to search for cliques"""
+        """ Iterates through all vertices in graph to search for all cliques"""
         for key in self.vert_dict:
             self.is_clique(key)
     
@@ -255,30 +256,27 @@ class Graph:
         # reverse the path for output readibility
         path[:] = reversed(path)
         return path
-# # driver code
+# driver code
 # g = Graph()
 
-# # # Add your friends
+# # Add your friends
 # g.add_vertex(1)
 # g.add_vertex(2)
 # g.add_vertex(3)
 # g.add_vertex(4)
 # g.add_vertex(5)
 # g.add_vertex(6)
-# # g.add_vertex(7)
+# g.add_vertex(7)
 
 # g.add_edge(1, 5)
 # g.add_edge(2, 3)
 # g.add_edge(3, 1)
-# # g.add_edge(3, 4)
-# # g.add_edge(3, 2)
 # g.add_edge(3, 4)
-# # g.add_edge(1, 5)
+# g.add_edge(3, 2)
+# g.add_edge(3, 4)
+# g.add_edge(1, 5)
 # g.add_edge(4, 5)
 # g.add_edge(5, 6)
-
-# vertex1 = g.get_vertex(1)
-# print(vertex1.degree)
 # g.add_edge(6, 4)
 # g.add_edge(6, 7)
 # # print(bfs(g, 1, 4))

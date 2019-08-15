@@ -14,11 +14,6 @@ class Vertex_Tests(unittest.TestCase):
         assert len(test_vertex.neighbors) == 1
         assert 2 in test_vertex.neighbors.keys()
         assert 1 in test_vertex.neighbors.values()
-
-    def test_get_neighbors(self):
-        test_vertex = Vertex(1)
-        test_vertex.add_neighbor(2, 1)
-        assert 2 in test_vertex.get_neighbors()
     
     def test_get_id(self):
         test_vertex = Vertex(1)
@@ -34,7 +29,6 @@ class Graph_Tests(unittest.TestCase):
         test_graph = Graph()
         assert test_graph.vert_dict == {}
         assert test_graph.num_vertices == 0
-        assert test_graph.edge_list == []
         
     def test_add_vertex(self):
         test_graph = Graph()
@@ -59,13 +53,35 @@ class Graph_Tests(unittest.TestCase):
         assert test_vert2 in test_vert1.neighbors
         assert test_vert1 in test_vert2.neighbors
 
-    
-    def test_get_vertices(self):
+    def test_add_degree(self):
         test_graph = Graph()
         test_graph.add_vertex(1)
         test_graph.add_vertex(2)
-        assert 1 in test_graph.get_vertices()
-        assert 2 in test_graph.get_vertices()
+        test_graph.add_edge(1, 2)
+        test_vert1 = test_graph.vert_dict[1]
+        test_vert2 = test_graph.vert_dict[2]
+        assert test_vert1.degree == 1
+        assert test_vert2.degree == 1
+    
+    def test_check_degree_mod(self):
+        test_graph = Graph()
+        test_graph.add_vertex(1)
+        test_graph.add_vertex(2)
+        test_graph.add_vertex(3)
+        test_graph.add_edge(1, 2)
+        test_graph.add_edge(2, 3)
+        test_graph.add_edge(3, 1)
+        assert test_graph.is_eulerian() == True
+
+    def test_check_degree_mod_fail(self):
+        test_graph = Graph()
+        test_graph.add_vertex(1)
+        test_graph.add_vertex(2)
+        test_graph.add_vertex(3)
+        test_graph.add_edge(1, 2)
+        test_graph.add_edge(2, 3)
+        # test_graph.add_edge(3, 1)
+        assert test_graph.is_eulerian() == False
 
 if __name__ == '__main__':
     unittest.main()
